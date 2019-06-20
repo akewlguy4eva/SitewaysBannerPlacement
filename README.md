@@ -10,7 +10,7 @@ Public scripts that work with the swinity.com Ad server and services. Client sid
 ## Client Side Javascript
 A simple pure JS script that globally reads banner tags and allows for live updates, repeating banners, Buy Ad inclusion and much more.
 
-To use the script simply get from our CDN and put inside your &lt;HEAD&gt;(Suggested) or on the bottom of your page.
+To use the script simply get from our CDN and put inside your `<head>` _(suggested)_ or on the bottom of your page.
 
 ```HTML
 <script src="https://cdn.swinity.com/static/swbanners.js" type="text/javascript"/>
