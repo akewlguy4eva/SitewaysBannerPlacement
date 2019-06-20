@@ -1,17 +1,16 @@
 /**************************************************************************************
-Siteways Banner Script.
+Swinity Banner Script.
 A script to read mutiple sources and replace banners setup with <INS tags
-or to do inline replaces.
 Ver: .01 - Do some setup for class etc..
 **************************************************************************************/
-let Siteways = {
+let Swinity = {
   Globals: {
     RootApi: "https://app.swinity.com/api",
     LogEnabled: true,
     BannerSpots: [],
   },
   Log: (txt,obj) => {
-    if(Siteways.Globals.LogEnabled) {
+    if(Swinity.Globals.LogEnabled) {
       if(typeof obj === "undefined") {
         console.log(txt);
       } else {
@@ -56,7 +55,7 @@ let Siteways = {
       };
       xhr.send();
     } catch(ex) {
-      console.error("Error in Siteways.Globals.HttpGet: " + ex.toString());
+      console.error("Error in Swinity.Globals.HttpGet: " + ex.toString());
     }
   },
   Banners: {
@@ -66,34 +65,32 @@ let Siteways = {
       // modern browsers
       else if (document.addEventListener) document.addEventListener('DOMContentLoaded', cb);
       else document.attachEvent('onreadystatechange', function(){
-          if (document.readyState=='complete') cb();
+          if (document.readyState!='loading') cb();
         });
     },
     //This function loads the the page tags, and the banners for the spots
     Init: () => {
       try {
-        Siteways.Globals.BannerSpots = [];
-        Siteways.Banners.PlaceBanners();
+        Swinity.Globals.BannerSpots = [];
+        Swinity.Banners.PlaceBanners();
       } catch(ex) {
-        console.error("Error in Siteways.Banners.Init: " + ex.toString());
+        console.error("Error in Swinity.Banners.Init: " + ex.toString());
       }
     },
 
     //This Is Function To Call To Set The Current Banners
     PlaceBanners: () => {
-
-
       //Always Reload, Maybe They Added New :)
-      Siteways.Globals.BannerSpots = [];
-      Siteways.Globals.BannerSpots = Siteways.Banners.GetInsertTags();
+      Swinity.Globals.BannerSpots = [];
+      Swinity.Globals.BannerSpots = Swinity.Banners.GetInsertTags();
 
-      Siteways.Globals.BannerSpots.forEach((s) => {
+      Swinity.Globals.BannerSpots.forEach((s) => {
         let ele = s.Element;
         ele.setAttribute("style","display: none");
         let headers = {
           "X-Alt-Referer": document.location.href
         };
-        Siteways.HttpGet(Siteways.Globals.RootApi + `/creatives/${s.Id}?channel=${s.Channel}&max=${s.Count}&minAdvertiseHere=${s.MinBuyAds}&maxAdvertiseHere=${s.MaxBuyAds}`,headers,(data,pb) => {
+        Swinity.HttpGet(Swinity.Globals.RootApi + `/creatives/${s.Id}?channel=${s.Channel}&max=${s.Count}&minAdvertiseHere=${s.MinBuyAds}&maxAdvertiseHere=${s.MaxBuyAds}`,headers,(data,pb) => {
 
 
 
@@ -167,21 +164,21 @@ let Siteways = {
           let hObj = eles.item(x);
           let tObj = {
             Element: hObj,
-            Id:  Siteways.Banners.GetAttributeString(hObj,"data-key"),
-            Channel: Siteways.Banners.GetAttributeString(hObj,"data-channel"),
-            Class: Siteways.Banners.GetAttributeString(hObj,"data-class"),
-            Count: Siteways.Banners.GetAttributeString(hObj,"data-count"),
-            MinBuyAds: isNaN(Siteways.Banners.GetAttributeString(hObj,"data-minbuyads")) ? "0" : Siteways.Banners.GetAttributeString(hObj,"data-minbuyads"),
-            MaxBuyAds: isNaN(Siteways.Banners.GetAttributeString(hObj,"data-maxbuyads")) ? "0" : Siteways.Banners.GetAttributeString(hObj,"data-maxbuyads"),
-            Country: Siteways.Banners.GetAttributeString(hObj,"data-country"),
-            BuyAdTemplate: Siteways.Banners.GetAttributeString(hObj,"data-buyadtemplate"),
-            DomId: Siteways.Banners.GetAttributeString(hObj,"data-domid") == "" ? Siteways.MakeId(15) : Siteways.Banners.GetAttributeString(hObj,"data-domid"),
+            Id:  Swinity.Banners.GetAttributeString(hObj,"data-key"),
+            Channel: Swinity.Banners.GetAttributeString(hObj,"data-channel"),
+            Class: Swinity.Banners.GetAttributeString(hObj,"data-class"),
+            Count: Swinity.Banners.GetAttributeString(hObj,"data-count"),
+            MinBuyAds: isNaN(Swinity.Banners.GetAttributeString(hObj,"data-minbuyads")) ? "0" : Swinity.Banners.GetAttributeString(hObj,"data-minbuyads"),
+            MaxBuyAds: isNaN(Swinity.Banners.GetAttributeString(hObj,"data-maxbuyads")) ? "0" : Swinity.Banners.GetAttributeString(hObj,"data-maxbuyads"),
+            Country: Swinity.Banners.GetAttributeString(hObj,"data-country"),
+            BuyAdTemplate: Swinity.Banners.GetAttributeString(hObj,"data-buyadtemplate"),
+            DomId: Swinity.Banners.GetAttributeString(hObj,"data-domid") == "" ? Swinity.MakeId(15) : Swinity.Banners.GetAttributeString(hObj,"data-domid"),
           };
           hObj.setAttribute("data-domid",tObj.DomId);
           spots.push(tObj);
         }
       } catch(ex) {
-        console.error("Error in Siteways.Banners.GetInsertTags: " + ex.toString());
+        console.error("Error in Swinity.Banners.GetInsertTags: " + ex.toString());
         throw ex;
       }
       return spots;
@@ -192,11 +189,8 @@ let Siteways = {
 
 };
 
-
-
-
-Siteways.Banners.OnReady(()=> {
-  Siteways.Banners.Init(); //Call All Needed Jazz :)
+Swinity.Banners.OnReady(()=> {
+  Swinity.Banners.Init(); //Call All Needed Jazz :)
 });
 
 
