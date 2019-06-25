@@ -26,6 +26,7 @@ The tag is the only code required to draw spots.
 ## Attribute Tags
 - `data-key` - the key to the ad-zone on the swinity service. Ie: `our-network-300x100` ***required**
 - `data-count` - numeric value for the number of banners returned from the api ***required**
+- `data-country` - an ISO country code for the current user or page **Default: Current Country**
 - `data-channel` - custom string value that can be used for tracking/grouping
 - `data-minbuyads` - the minimum amount of Buy Ad spots returned(explained below in _Buy Ad Spots_) **Default: 0**
 - `data-minbuyads` - the maximum amount of Buy Ad spots returned(explained below in _Buy Ad Spots_) **Default: 0**
@@ -40,8 +41,8 @@ The tag is the only code required to draw spots.
 You can also specify a custom `<div> or element` for drawing a buy advertisement banner. You can customize the HTML as you
  like and then simply set in the `<ins>` tag the attribute `data-buyadtemplate`
  
- Ie: this is valid for setup of an buy ad block;
- 
+### Example
+
 ```HTML
 <ins data-key="300x250" data-channel="topbanners" data-class="custom-class" data-count="2" data-minbuyads="1" data-buyadtemplate="my-custom-200x200" />
 <div style="display: none">
@@ -49,8 +50,32 @@ You can also specify a custom `<div> or element` for drawing a buy advertisement
         <a href="URLTOBUYADPAGE"><img src="URLTOMYCUSTOMIMAGE" alt="BUY Now"</a>
     </div>
 </div>  
-
 ```
 
+## Predone Buy Ad Banners
+We have included some predone CSS based ad banners for you as well. You may use them instead of setting up your own buy ad images or markup. To use the predone css ad banners simplt add the below to your head tag as well.
+
+```HTML
+<link href="https://cdn.swinity.com/scripts/buyads-yellow.css" rel="stylesheet">
+```
+
+And then add the sizes you will use with the predone CSS classes.
+
+### Example
+
+```HTML
+<ins data-key="300x250" data-channel="topbanners" data-class="custom-class" data-count="2" data-minbuyads="1" data-buyadtemplate="my-custom-200x200" />
+<div style="display: none">
+    <div id="my-custom-200x200">
+        <a href="/advertise">
+            <div class="adbuy-banner Size-300x100">
+                <div class="buy-text Size-300x100">Get 50x More Visitors!</div>
+                <div class="buy-button Size-300x100">Advertise here!</div>
+                <div class="buy-sub-text Size-200x333">Buy your ad banner right now</div>
+            </div>
+        </a>
+    </div>
+</div>  
+```
 
 
