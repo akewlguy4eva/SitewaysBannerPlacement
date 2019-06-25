@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="93ceebb5-868b-4da6-bffa-a98fc5b318e7" name="Default Changelist" comment="" />
+    <list default="true" id="93ceebb5-868b-4da6-bffa-a98fc5b318e7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/css/buyads.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/buyads.css" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -25,11 +27,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/SwBanners.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1365">
+            <state relative-caret-position="17">
               <caret line="71" column="17" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/css/buyads.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="841">
+              <caret line="103" selection-start-line="103" selection-end-line="103" />
             </state>
           </provider>
         </entry>
@@ -44,14 +55,15 @@
       <list>
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/js/SwBanners.js" />
+        <option value="$PROJECT_DIR$/src/css/buyads.css" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="513" />
-    <option name="y" value="194" />
-    <option name="width" value="1425" />
-    <option name="height" value="1027" />
+    <option name="x" value="1912" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager">
     <OptionsSetting value="false" id="Update" />
@@ -61,6 +73,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -77,20 +90,25 @@
               <item name="PublicBannerScripts" type="b2602c69:ProjectViewProjectNode" />
               <item name="PublicBannerScripts" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PublicBannerScripts" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PublicBannerScripts" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SitewaysReact-Agency/src/Siteways.React.Server" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -125,6 +143,7 @@
       <workItem from="1561013262373" duration="3911000" />
       <workItem from="1561022257941" duration="346000" />
       <workItem from="1561023082329" duration="28000" />
+      <workItem from="1561434197601" duration="28000" />
     </task>
     <task id="LOCAL-00001" summary="Updated Readme">
       <created>1561016162895</created>
@@ -144,10 +163,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4285000" />
+    <option name="totallyTimeSpent" value="4313000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14699684" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -189,8 +208,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/SwBanners.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1365">
+        <state relative-caret-position="17">
           <caret line="71" column="17" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/css/buyads.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="841">
+          <caret line="103" selection-start-line="103" selection-end-line="103" />
         </state>
       </provider>
     </entry>

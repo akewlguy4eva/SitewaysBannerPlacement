@@ -13,17 +13,19 @@
 }
 
 .adbuy-banner .buy-text {
+    font-family: bebas,Arial;
     font-size: 3.2rem;
     text-align: center;
     display: block;
     color: white;
     text-shadow: #000 2px 2px 4px;
     font-family: bebas, "Open Sanse", Arial;
-    white-space: pre;
+    white-space: pre-wrap;
 }
 .adbuy-banner .buy-text.Size-300x100  { font-size: 2rem; line-height: 1.7rem; display: block; float: left; margin: 25px 10px; }
 .adbuy-banner .buy-text.Size-300x250 { font-size: 4rem; line-height: 3.7rem  }
 .adbuy-banner .buy-text.Size-200x200 { font-size: 2.5rem; line-height: 2.2rem  }
+.adbuy-banner .buy-text.Size-200x333 { font-size: 3.5rem; line-height: 3.2rem  }
 .adbuy-banner .buy-text.Size-200x100 { font-size: 1.8rem;  line-height: 15px; white-space: normal  }
 .adbuy-banner .buy-text.Size-728x90  { font-size: 4rem; line-height: 3.7rem; display: inline-block; margin-right: 25px; margin-top: 5px; }
 .adbuy-banner .buy-button {
@@ -41,27 +43,32 @@
     padding: 4px;
 }
 .adbuy-banner .buy-button.Size-300x100 { font-size: 1.6rem;
+    font-family: bebas,Arial;
     line-height: 1rem;
     display: block;
     float: left;
     padding: 13px 0px;
     margin: 25px 10px;  }
 .adbuy-banner .buy-button.Size-200x200 { font-size: 1.3rem;  }
+.adbuy-banner .buy-button.Size-200x333 { font-size: 1.3rem;  }
 .adbuy-banner .buy-button.Size-200x100 { font-size: 1.2rem; line-height: .9rem; height: 25px; padding: 7px; }
 .adbuy-banner .buy-button.Size-728x90  { font-size: 1.6rem; line-height: 1.6rem; display: inline-block; margin-right: 25px; padding: 9px 0px; width: 30%; margin-top: 20px; }
 .adbuy-banner .buy-sub-text {
+    font-family: bebas,Arial;
     font-size: 2rem;
     text-align: center;
     display: block;
     color: #414046;
     font-family: bebas, "Open Sanse", Arial;
-    white-space: pre;
+    white-space: pre-wrap;
 }
 .adbuy-banner .buy-sub-text.Size-300x100  { font-size: 1.4rem; line-height: 1.2rem; white-space: normal; display: inline-block; vertical-align: top; white-space: normal; margin: 25px 10px;}
 .adbuy-banner .buy-sub-text.Size-200x200 { font-size: 2.5rem; white-space: normal }
+.adbuy-banner .buy-sub-text.Size-200x333 { font-size: 3.5rem; white-space: normal }
 .adbuy-banner .buy-sub-text.Size-200x200 { font-size: 2rem; white-space: normal }
 .adbuy-banner .buy-sub-text.Size-200x100 { font-size: 1.5rem; line-height: .9rem; margin-top: 5px}
-.adbuy-banner .buy-sub-text.Size-728x90  { font-size: 2.3rem; line-height: .9rem; white-space: normal; display: inline-block; vertical-align: top; white-space: normal; margin-top: 35px;}
+.adbuy-banner .buy-sub-text.Size-728x90  { font-size: 2.3rem; line-height: 1.9rem; white-space: normal; display: inline-block; vertical-align: top; white-space: normal; margin-top: 24px;}
+
 
 .adbuy-banner.Size-300x100 {
     width: 300px;
@@ -80,6 +87,10 @@
 .adbuy-banner.Size-200x200 {
     width: 200px;
     height: 200px;
+}
+.adbuy-banner.Size-200x333 {
+    width: 200px;
+    height: 333px;
 }
 .adbuy-banner.Size-200x100 {
     width: 200px;
