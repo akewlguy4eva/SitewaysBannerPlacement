@@ -1,9 +1,3 @@
-@font-face {
-    font-family: 'bebas';
-    src: url("BebasKai.woff2") format("woff2"), url("BebasKai.woff") format("woff");
-    font-weight: 400;
-    font-style: normal;
-}
 .adbuy-banner {
     background: #f9ed05;
     background: -moz-linear-gradient(top, #f9ed05 0%, #fccd4d 31%, #f8b500 51%, #f9ed05 100%);
@@ -34,6 +28,8 @@
 .adbuy-banner .buy-text.Size-200x333 { font-size: 3.5rem; line-height: 3.2rem  }
 .adbuy-banner .buy-text.Size-200x100 { font-size: 1.8rem;  line-height: 15px; white-space: normal  }
 .adbuy-banner .buy-text.Size-728x90  { font-size: 4rem; line-height: 3.7rem; display: inline-block; margin-right: 25px; margin-top: 5px; }
+.adbuy-banner .buy-text.Size-468x60  { font-size: 3rem; line-height: 2.7rem; display: inline-block; margin-right: 25px; margin-top: 2px; }
+
 .adbuy-banner .buy-button {
     display: block;
     width: 90%;
@@ -59,6 +55,7 @@
 .adbuy-banner .buy-button.Size-200x333 { font-size: 1.3rem;  }
 .adbuy-banner .buy-button.Size-200x100 { font-size: 1.2rem; line-height: .9rem; height: 25px; padding: 7px; }
 .adbuy-banner .buy-button.Size-728x90  { font-size: 1.6rem; line-height: 1.6rem; display: inline-block; margin-right: 25px; padding: 9px 0px; width: 30%; margin-top: 20px; }
+.adbuy-banner .buy-button.Size-468x60  { font-size: 1.2rem; line-height: 1.2rem; display: inline-block; margin-right: 25px; padding: 12px 0px; width: 30%; margin-top: 8px; }
 .adbuy-banner .buy-sub-text {
     font-family: bebas,Arial;
     font-size: 2rem;
@@ -74,7 +71,7 @@
 .adbuy-banner .buy-sub-text.Size-200x200 { font-size: 2rem; white-space: normal }
 .adbuy-banner .buy-sub-text.Size-200x100 { font-size: 1.5rem; line-height: .9rem; margin-top: 5px}
 .adbuy-banner .buy-sub-text.Size-728x90  { font-size: 2.3rem; line-height: 1.9rem; white-space: normal; display: inline-block; vertical-align: top; white-space: normal; margin-top: 24px;}
-
+.adbuy-banner .buy-sub-text.Size-468x60  { font-size: 1.9rem; line-height: 1.5rem; white-space: normal; display: inline-block; vertical-align: top; white-space: normal; margin-top: 16px;}
 
 .adbuy-banner.Size-300x100 {
     width: 300px;
@@ -104,6 +101,12 @@
 }
 .adbuy-banner.Size-728x90 {
     width: 728px; height: 90px;
+    padding: 2px 15px 2px 15px;
+    display: flex; flex-flow: nowrap;
+}
+
+.adbuy-banner.Size-468x60 {
+    width: 468px; height: 60px;
     padding: 2px 15px 2px 15px;
     display: flex; flex-flow: nowrap;
 }
