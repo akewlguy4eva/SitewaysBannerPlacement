@@ -14,13 +14,11 @@ class SwBanner extends Component {
       Min: this.isNullOrUndefined(props.min) ? "" : props.min,
       MinBuyAds: this.isNullOrUndefined(props.minBuyAds) ? "0" : props.minBuyAds,
       Country: this.isNullOrUndefined(props.country) ? "" : props.country,
-      ApiReferer: this.isNullOrUndefined(props.apireferer) ? "" : props.apireferer,
-      ApiAnonId: this.isNullOrUndefined(props.apiAnonId) ? "" : props.apiAnonId,
+      ApiAnonId: this.isNullOrUndefined(props.apiAnonId) ? "" : props.apiAnonId, //Required Only Is SSR, Otherwise cookies contains the id.
       DomId: this.MakeId(10), DoApiClick: this.isNullOrUndefined(props.doApiClick) ? true : props.doApiClick,
       ApiResult: {
         Code: 500, Message: "New", Result: []
       }
-
     };
     this.state.MaxBuyAds = this.isNullOrUndefined(props.maxBuyAds) ? this.state.MinBuyAds : props.maxBuyAds;
   }

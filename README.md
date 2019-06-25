@@ -29,7 +29,7 @@ The tag is the only code required to draw spots.
 - `data-country` - an ISO country code for the current user or page **Default: Current Country**
 - `data-channel` - custom string value that can be used for tracking/grouping
 - `data-minbuyads` - the minimum amount of Buy Ad spots returned(explained below in _Buy Ad Spots_) **Default: 0**
-- `data-minbuyads` - the maximum amount of Buy Ad spots returned(explained below in _Buy Ad Spots_) **Default: 0**
+- `data-maxbuyads` - the maximum amount of Buy Ad spots returned(explained below in _Buy Ad Spots_) **Default: 0**
 - `data-buyadtemplate` - a DOM id for the container that holds HTML for a buy ad spots(explained below in _Buy Ad Spots_) 
 
 ## Global Methods
@@ -80,10 +80,38 @@ And then add the sizes you will use with the predone CSS classes.
 
 
 ## React Components
+For ease with the [React](https://reactjs.org) framework we have created 2 components that will render using react framework. While the props have simpler names
+the end result is identical to the client version of the script.
+
+### Example
+```javascript
+import React from 'react';
+import Select from 'react-select';
+import SwBanner from 'SwBanner.js';
+import BuyAdBanner from 'BuyAdBanner.js';
+
+class App extends React.Component {
+  render() {
+      <SwBanner id={"728x90"} channel="my-custom-channel" count={"1"} minBuyAds={"0"} maxBuyAds={"0"} className={"my-custom-class"}>
+        <BuyAdBanner size={"728x90"}/>
+      </SwBanner>
+  }
+}
+```
+
+As you can see the react component renders the children for the BuyAdBanners which in this case is also a react component.
+Properties for the react banner spot component are as follows.
+- `id` - the key to the ad-zone on the swinity service. Ie: `our-network-300x100` ***required**
+- `count` - numeric value for the number of banners returned from the api ***required**
+- `country` - an ISO country code for the current user or page **Default: Current Country**
+- `channel` - custom string value that can be used for tracking/grouping
+- `minBuyAds` - the minimum amount of Buy Ad spots returned(explained below in _Buy Ad Spots_) **Default: 0**
+- `maxBuyAds` - the maximum amount of Buy Ad spots returned(explained below in _Buy Ad Spots_) **Default: 0**
+- `doApiClick` - call the swinity api with the click id when a banner ad is clicked **Default: true**
 
 
-
-
+## Google Analytics Integration
+The script and react component have built in Google GA integration. The script will post a google event if the GA is loaded on your page.
 
 ## License
 
