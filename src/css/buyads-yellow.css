@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'bebas';
+    src: url("BebasKai.woff2") format("woff2"), url("BebasKai.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+}
 .adbuy-banner {
     background: #f9ed05;
     background: -moz-linear-gradient(top, #f9ed05 0%, #fccd4d 31%, #f8b500 51%, #f9ed05 100%);
