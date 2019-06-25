@@ -104,7 +104,6 @@ the end result is identical to the client version of the script.
 ### Example
 ```javascript
 import React from 'react';
-import Select from 'react-select';
 import SwBanner from 'SwBanner.js';
 import BuyAdBanner from 'BuyAdBanner.js';
 
@@ -115,6 +114,9 @@ class App extends React.Component {
       </SwBanner>
   }
 }
+
+export default App;
+
 ```
 
 As you can see the react component renders the children for the BuyAdBanners which in this case is also a react component.
