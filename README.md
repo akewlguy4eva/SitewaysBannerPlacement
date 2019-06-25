@@ -52,7 +52,7 @@ CSS:
  .banners-350x250 a { border: 0 }
  .banners-350x250 img { max-width: 100% }
 ```
-Now each banner spots element will appy these style, the wrapper div, and then the href and img.
+Now each banner spots element will appy this style, the wrapper div, and then the href and img.
 
 
 ## Buy Advertisement Ads
