@@ -20,7 +20,7 @@ Once placed you now can put anywhere in your DOM an ins tag to cause the script 
 The tag is the only code required to draw spots.
 
 ```html
-<ins data-key="300x250" data-channel="topbanners" data-class="custom-class" data-count="2" data-minbuyads="1" />
+<ins data-key="300x250" data-channel="topbanners" data-class="custom-class" data-count="2" data-minbuyads="1" data-maxbuyads="1" />
 ```
 
 ## Attribute Tags
@@ -30,12 +30,30 @@ The tag is the only code required to draw spots.
 - `data-channel` - custom string value that can be used for tracking/grouping
 - `data-minbuyads` - the minimum amount of Buy Ad spots returned(explained below in _Buy Ad Spots_) **Default: 0**
 - `data-maxbuyads` - the maximum amount of Buy Ad spots returned(explained below in _Buy Ad Spots_) **Default: 0**
+- `data-class` - a css class to be applied to the elements of each banner section.
 - `data-buyadtemplate` - a DOM id for the container that holds HTML for a buy ad spots(explained below in _Buy Ad Spots_) 
 
 ## Global Methods
 - `Swinity.Banners.PlaceBanners(usecache=false)` - A method that causes the ins tags to be rewritten, used on pageless type websites.
   - `usercache` allows for caching list requests. Useful in frameworks that rerender the content alot without the options changing.
- 
+
+## CSS styling
+You can style the actual dom elements by simply defining `data-class` in your `<ins>` tags.
+### Example
+
+Tag:
+```html
+<ins ... data-class="banners-350x250" data-count="2" />
+```
+
+CSS:
+```css
+ div.banners-350x250 { display: flex; justify-content: center }
+ .banners-350x250 a { border: 0 }
+ .banners-350x250 img { max-width: 100% }
+```
+Now each banner spots element will appy this style, the wrapper div, and then the href and img.
+
 
 ## Buy Advertisement Ads
 You can also specify a custom `<div> or element` for drawing a buy advertisement banner. You can customize the HTML as you
