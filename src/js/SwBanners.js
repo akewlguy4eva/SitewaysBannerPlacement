@@ -66,6 +66,7 @@ let Swinity = {
       if(uc) {
         if(Swinity.Globals.HttpCache.filter((t) => {return t.Key === url}).length>0) {
           cb(Swinity.Globals.HttpCache.filter((t) => {return t.Key === url})[0].Value,pb);
+          return;
         }
       }
 
