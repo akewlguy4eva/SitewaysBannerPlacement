@@ -20,7 +20,7 @@ class BuyAdBanner extends Component {
   }
 
   handleClick(e) {
-    window.ScrollTop();
+
   }
   render() {
     return (

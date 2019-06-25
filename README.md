@@ -66,11 +66,11 @@ And then add the sizes you will use with the predone CSS classes.
 ```html
 <ins data-key="300x250" data-channel="topbanners" data-class="custom-class" data-count="2" data-minbuyads="1" data-buyadtemplate="my-custom-200x200" />
 <div style="display: none">
-    <div id="my-custom-200x200">
+    <div id="my-custom-200x333">
         <a href="/advertise">
-            <div class="adbuy-banner Size-300x100">
-                <div class="buy-text Size-300x100">Get 50x More Visitors!</div>
-                <div class="buy-button Size-300x100">Advertise here!</div>
+            <div class="adbuy-banner Size-200x333">
+                <div class="buy-text Size-200x333">Get 50x More Visitors!</div>
+                <div class="buy-button Size-200x333">Advertise here!</div>
                 <div class="buy-sub-text Size-200x333">Buy your ad banner right now</div>
             </div>
         </a>
@@ -84,7 +84,8 @@ And then add the sizes you will use with the predone CSS classes.
 
 
 
+
 ## License
 
 ### GNU General Public License v3.0
-Permissions of this strong copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights.
+Permissions of this strong copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. [View](LICENSE)
