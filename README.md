@@ -12,14 +12,14 @@ A simple pure JS script that globally reads banner tags and allows for live upda
 
 To use the script simply get from our CDN and put inside your `<head>` _(suggested)_ or on the bottom of your page.
 
-```HTML
+```html
 <script src="https://cdn.swinity.com/scripts/swbanners.js" type="text/javascript"/>
 ```
 
 Once placed you now can put anywhere in your DOM an ins tag to cause the script to write spots on that exact place(Ie: children of a DIV parent) automatically. 
 The tag is the only code required to draw spots.
 
-```HTML
+```html
 <ins data-key="300x250" data-channel="topbanners" data-class="custom-class" data-count="2" data-minbuyads="1" />
 ```
 
@@ -34,7 +34,7 @@ The tag is the only code required to draw spots.
 
 ## Global Methods
 - `Swinity.Banners.PlaceBanners(usecache=false)` - A method that causes the ins tags to be rewritten, used on pageless type websites.
-  - `usercache` allows for caching list requests. Useful it frameworks that rerender the content without the options changing.
+  - `usercache` allows for caching list requests. Useful in frameworks that rerender the content alot without the options changing.
  
 
 ## Buy Advertisement Ads
@@ -43,7 +43,7 @@ You can also specify a custom `<div> or element` for drawing a buy advertisement
  
 ### Example
 
-```HTML
+```html
 <ins data-key="300x250" data-channel="topbanners" data-class="custom-class" data-count="2" data-minbuyads="1" data-buyadtemplate="my-custom-200x200" />
 <div style="display: none">
     <div id="my-custom-200x200">
@@ -55,7 +55,7 @@ You can also specify a custom `<div> or element` for drawing a buy advertisement
 ## Predone Buy Ad Banners
 We have included some predone CSS based ad banners for you as well. You may use them instead of setting up your own buy ad images or markup. To use the predone css ad banners simplt add the below to your head tag as well.
 
-```HTML
+```html
 <link href="https://cdn.swinity.com/scripts/buyads-yellow.css" rel="stylesheet">
 ```
 
@@ -63,7 +63,7 @@ And then add the sizes you will use with the predone CSS classes.
 
 ### Example
 
-```HTML
+```html
 <ins data-key="300x250" data-channel="topbanners" data-class="custom-class" data-count="2" data-minbuyads="1" data-buyadtemplate="my-custom-200x200" />
 <div style="display: none">
     <div id="my-custom-200x200">
@@ -79,3 +79,12 @@ And then add the sizes you will use with the predone CSS classes.
 ```
 
 
+## React Components
+
+
+
+
+## License
+
+### GNU General Public License v3.0
+Permissions of this strong copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights.
