@@ -38,12 +38,12 @@ The tag is the only code required to draw spots.
   - `usercache` allows for caching list requests. Useful in frameworks that rerender the content alot without the options changing.
 
 ## CSS styling
-You can style the actiual dom elements by simply defining `data-class` in your `<ins>` tags.
+You can style the actual dom elements by simply defining `data-class` in your `<ins>` tags.
 ### Example
 
 Tag:
 ```html
-<ins data-key="300x250" data-channel="topbanners" data-class="banners-350x250" data-count="2" data-minbuyads="1" data-maxbuyads="1" />
+<ins ... data-class="banners-350x250" data-count="2" />
 ```
 
 CSS:
