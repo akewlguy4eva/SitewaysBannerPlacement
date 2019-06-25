@@ -50,7 +50,7 @@ CSS:
 ```css
  div.banners-350x250 { display: flex; justify-content: center }
  .banners-350x250 a { border: 0 }
- .banners-350x250 img { max-width: 100% }
+ .banners-350x250 img { max-width: 100%, margin: 5px 5px; }
 ```
 Now each banner spots element will appy this style, the wrapper div, and then the href and img.
 
