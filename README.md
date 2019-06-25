@@ -20,7 +20,7 @@ Once placed you now can put anywhere in your DOM an ins tag to cause the script 
 The tag is the only code required to draw spots.
 
 ```html
-<ins data-key="300x250" data-channel="topbanners" data-class="custom-class" data-count="2" data-minbuyads="1" />
+<ins data-key="300x250" data-channel="topbanners" data-class="custom-class" data-count="2" data-minbuyads="1" data-maxbuyads="1" />
 ```
 
 ## Attribute Tags
