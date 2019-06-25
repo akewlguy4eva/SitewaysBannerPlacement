@@ -6,6 +6,9 @@ Public scripts that work with the swinity.com Ad server and services. Client sid
 - Pure client side javascript that works on all browsers/mobile devices
 - Simple &lt;ins&gt; interface makes possible for small section blocks with option to serve mutiple banners 
 - Abilitie to reload banners as any time for pageless frameworks like [React](https://reactjs.org), [Angular](https://angular.io) etc
+- Built in Google Analytics click event tracking and Swinity API impression/click tracking
+- Custom "Buy AD" logic and CSS for selling ad space on the Swinity network
+- [React](https://reastjs.org) components for working in the React framework
 
 ## Client Side Javascript
 A simple pure JS script that globally reads banner tags and allows for live updates, repeating banners, Buy Ad inclusion and much more.
