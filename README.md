@@ -16,7 +16,7 @@ A simple pure JS script that globally reads banner tags and allows for live upda
 To use the script simply get from our CDN and put inside your `<head>` _(suggested)_ or on the bottom of your page.
 
 ```html
-<script src="https://cdn.swinity.com/scripts/swbanners.js" type="text/javascript"/>
+<script src="https://cdn.swinity.com/scripts/swbanners.js" type="text/javascript"></script>
 ```
 
 Once placed you now can put anywhere in your DOM an ins tag to cause the script to write spots on that exact place(Ie: children of a DIV parent) automatically. 
