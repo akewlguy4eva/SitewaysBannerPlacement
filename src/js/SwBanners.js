@@ -2,7 +2,7 @@
  Swinity Banner Script.
  A script to read mutiple sources and replace banners setup with <INS tags
  or to do inline replaces.
- Ver: .01 - Do some setup for class etc..
+ Ver: .04 - Do some setup for class etc..
  **************************************************************************************/
 let Swinity = {
   Globals: {
@@ -164,6 +164,11 @@ let Swinity = {
                   try {
                     if(typeof window !== "undefined" && typeof window.ga !== "undefined") {
                       window.ga('send', 'event', 'Banner', 'Click', v.Click.Name);
+                    }
+                    if(typeof window !== "undefined" && typeof window.gtag !== "undefined") {
+                      window.gtag('event', 'view_promotion', [
+                        {"creative_name": v.Creative.Title, "creative_slot": v.Zone.Name + " - " + window.location.hostname, "id": v.Creative.Guid, "name": v.Click.Name}
+                      ]);
                     }
                   } catch(gex) {}
                   try {
