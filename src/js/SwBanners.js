@@ -2,7 +2,7 @@
  Swinity Banner Script.
  A script to read mutiple sources and replace banners setup with <INS tags
  or to do inline replaces.
- Ver: .04 - Do some setup for class etc..
+ Ver: .01 - Do some setup for class etc..
  **************************************************************************************/
 let Swinity = {
   Globals: {
@@ -165,11 +165,6 @@ let Swinity = {
                     if(typeof window !== "undefined" && typeof window.ga !== "undefined") {
                       window.ga('send', 'event', 'Banner', 'Click', v.Click.Name);
                     }
-                    if(typeof window !== "undefined" && typeof window.gtag !== "undefined") {
-                      window.gtag('event', 'view_promotion', [
-                        {"creative_name": v.Creative.Title, "creative_slot": v.Zone.Name + " - " + window.location.hostname, "id": v.Creative.Guid, "name": v.Click.Name}
-                      ]);
-                    }
                   } catch(gex) {}
                   try {
                     Swinity.HttpPostJson(Swinity.Globals.RootApi + `/creatives/click`,{Guid: v.Click.Guid},headers,()=>{});
@@ -225,16 +220,18 @@ let Swinity = {
             Id:  Swinity.Banners.GetAttributeString(hObj,"data-key"),
             Channel: Swinity.Banners.GetAttributeString(hObj,"data-channel"),
             Class: Swinity.Banners.GetAttributeString(hObj,"data-class"),
-            Count: isNaN(Swinity.Banners.GetAttributeString(hObj,"data-count")) ? "1" : Swinity.Banners.GetAttributeString(hObj,"data-count"),
+            Count: isNaN(Swinity.Banners.GetAttributeString(hObj,"data-count")) ? "0" : Swinity.Banners.GetAttributeString(hObj,"data-count"),
             MinBuyAds: isNaN(Swinity.Banners.GetAttributeString(hObj,"data-minbuyads")) ? "0" : Swinity.Banners.GetAttributeString(hObj,"data-minbuyads"),
             MaxBuyAds: isNaN(Swinity.Banners.GetAttributeString(hObj,"data-maxbuyads")) ? "0" : Swinity.Banners.GetAttributeString(hObj,"data-maxbuyads"),
             Country: Swinity.Banners.GetAttributeString(hObj,"data-country"),
             BuyAdTemplate: Swinity.Banners.GetAttributeString(hObj,"data-buyadtemplate"),
             DomId: Swinity.Banners.GetAttributeString(hObj,"data-domid") == "" ? Swinity.MakeId(15) : Swinity.Banners.GetAttributeString(hObj,"data-domid"),
           };
-          tObj.Min = isNaN(Swinity.Banners.GetAttributeString(hObj,"data-min")) ? tObj.Count : Swinity.Banners.GetAttributeString(hObj,"data-min"),
-            hObj.setAttribute("data-domid",tObj.DomId);
-          spots.push(tObj);
+          tObj.Min = isNaN(Swinity.Banners.GetAttributeString(hObj,"data-min")) ? tObj.Count : Swinity.Banners.GetAttributeString(hObj,"data-min");
+          hObj.setAttribute("data-domid",tObj.DomId);
+          if(tObj.Count > "0") {
+            spots.push(tObj);
+          }
         }
       } catch(ex) {
         console.error("Error in Swinity.Banners.GetInsertTags: " + ex.toString());

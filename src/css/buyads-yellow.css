@@ -30,8 +30,8 @@
 }
 .adbuy-banner .buy-text.Size-300x100  { font-size: 2rem; line-height: 1.7rem; display: block; float: left; margin: 25px 10px; }
 .adbuy-banner .buy-text.Size-300x250 { font-size: 4rem; line-height: 3.7rem  }
-.adbuy-banner .buy-text.Size-200x200 { font-size: 2.5rem; line-height: 2.2rem  }
-.adbuy-banner .buy-text.Size-200x333 { font-size: 3.5rem; line-height: 3.2rem  }
+.adbuy-banner .buy-text.Size-200x200 { font-size: 25px; line-height: 25px;  margin: 10px 5px 0px 5px;  }
+.adbuy-banner .buy-text.Size-200x333 { font-size: 30px; line-height: 30px;  margin: 10px 5px 0px 5px;  }
 .adbuy-banner .buy-text.Size-200x100 { font-size: 1.8rem;  line-height: 15px; white-space: normal  }
 .adbuy-banner .buy-text.Size-728x90  { font-size: 4rem; line-height: 3.7rem; display: inline-block; margin-right: 25px; margin-top: 5px; }
 .adbuy-banner .buy-text.Size-468x60  { font-size: 3rem; line-height: 2.7rem; display: inline-block; margin-right: 25px; margin-top: 2px; }
@@ -39,7 +39,7 @@
 .adbuy-banner .buy-button {
     display: block;
     width: 90%;
-    height: 40px;
+    max-height: 30px;
     border-radius: 8px;
     box-shadow: #000 2px 2px 4px;
     background: Green;
@@ -48,7 +48,8 @@
     vertical-align: baseline;
     border: solid 2px white;
     font-family: Arial, "Open Sanse";
-    padding: 4px;
+    padding: 10px;
+    margin: 10px;
 }
 .adbuy-banner .buy-button.Size-300x100 { font-size: 1.6rem;
     font-family: bebas,Arial;
@@ -73,8 +74,8 @@
 }
 .adbuy-banner .buy-sub-text.Size-300x100  { font-size: 1.4rem; line-height: 1.2rem; white-space: normal; display: inline-block; vertical-align: top; white-space: normal; margin: 25px 10px;}
 .adbuy-banner .buy-sub-text.Size-200x200 { font-size: 2.5rem; white-space: normal }
-.adbuy-banner .buy-sub-text.Size-200x333 { font-size: 3.5rem; white-space: normal }
-.adbuy-banner .buy-sub-text.Size-200x200 { font-size: 2rem; white-space: normal }
+.adbuy-banner .buy-sub-text.Size-200x333 { font-size: 25px; line-height: 25px; margin-top: 2px; white-space: normal }
+.adbuy-banner .buy-sub-text.Size-200x200 { font-size: 20px; line-height: 20px; margin-top: 2px; white-space: normal }
 .adbuy-banner .buy-sub-text.Size-200x100 { font-size: 1.5rem; line-height: .9rem; margin-top: 5px}
 .adbuy-banner .buy-sub-text.Size-728x90  { font-size: 2.3rem; line-height: 1.9rem; white-space: normal; display: inline-block; vertical-align: top; white-space: normal; margin-top: 24px;}
 .adbuy-banner .buy-sub-text.Size-468x60  { font-size: 1.9rem; line-height: 1.5rem; white-space: normal; display: inline-block; vertical-align: top; white-space: normal; margin-top: 16px;}
@@ -96,10 +97,14 @@
 .adbuy-banner.Size-200x200 {
     width: 200px;
     height: 200px;
+    padding: 0px;
+    margin: 5px auto 10px auto;
 }
 .adbuy-banner.Size-200x333 {
     width: 200px;
     height: 333px;
+    padding: 0px;
+    margin: 5px auto 10px auto;
 }
 .adbuy-banner.Size-200x100 {
     width: 200px;
@@ -115,4 +120,8 @@
     width: 468px; height: 60px;
     padding: 2px 15px 2px 15px;
     display: flex; flex-flow: nowrap;
+}
+
+.flex-center {
+    text-decoration: none;
 }
