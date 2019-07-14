@@ -2,7 +2,6 @@
  Swinity Banner Script.
  A script to read mutiple sources and replace banners setup with <INS tags
  or to do inline replaces.
- Ver: .01 - Do some setup for class etc..
  **************************************************************************************/
 
 
@@ -21,10 +20,13 @@ let Swinity = {
       {Size: "300x100", Theme: "ENG-Modern", Url: "https://cdn.topescort.com/library/source/v/1/d1ae0e1e-d234-4e72-9f08-e1361ab9725e.gif"},
       {Size: "200x333", Theme: "ENG-Modern", Url: "https://cdn.topescort.com/library/source/v/1/9a4d446e-8bcb-4003-8913-d4cd4c9af349.gif"},
       {Size: "200x333", Theme: "ENG-Modern", Url: "https://cdn.topescort.com/library/source/v/1/acebc6d5-1b76-4556-a533-792cb91b8380.gif"},
+      {Size: "200x233", Theme: "ENG-Modern", Url: "https://cdn.topescort.com/library/source/v/1/9a4d446e-8bcb-4003-8913-d4cd4c9af349.gif"},
+      {Size: "200x233", Theme: "ENG-Modern", Url: "https://cdn.topescort.com/library/source/v/1/acebc6d5-1b76-4556-a533-792cb91b8380.gif"},
       {Size: "200x200", Theme: "ENG-Modern", Url: "https://cdn.topescort.com/library/source/v/1/848ad901-e241-4760-bbcc-a1167bf3f8fe.gif"},
       {Size: "200x200", Theme: "ENG-Modern", Url: "https://cdn.topescort.com/library/source/v/1/ba029d2f-4f30-4b2b-9b20-18f2d15a442a.gif"},
       {Size: "160x600", Theme: "ENG-Modern", Url: "https://cdn.topescort.com/library/source/v/1/b902347e-04f5-46db-b440-1f9ddbd756f8.gif"},
-      {Size: "160x600", Theme: "ENG-Modern", Url: "https://cdn.topescort.com/library/source/v/1/9903bbc2-d1f6-4a87-b594-ec9c49c59b1a.gif"}
+      {Size: "160x600", Theme: "ENG-Modern", Url: "https://cdn.topescort.com/library/source/v/1/9903bbc2-d1f6-4a87-b594-ec9c49c59b1a.gif"},
+      {Size: "468x60", Theme: "ENG-Modern", Url: "https://cdn.topescort.com/library/source/v/1/e01cbfaf-4db0-4f6c-967d-c077129517db.jpg"}
     ]
   },
   Log: (txt,obj) => {
@@ -141,7 +143,7 @@ let Swinity = {
         if(bans.length === 1) {
           return bans[0].Url;
         }
-        let ran = Math.floor(Math.random() * (bans.length-1));
+        let ran = Math.floor(Math.random() * (bans.length));
         return bans[ran].Url;
       }
 
@@ -157,6 +159,7 @@ let Swinity = {
       cde += '<div class="adbuy-banner Size-' + size + '">';
       cde += '<div class="buy-text Size-' + size + '">Get 50x more visitors!</div>';
       cde += '<div class="buy-button Size-' + size + '">Advertise here!</div>';
+      cde += '<div class="buy-sub-text Size-200x200">Buy a banner ad today.</div>'
       cde += '</div>';
       cde += '</a></div>';
       return cde;
@@ -190,10 +193,10 @@ let Swinity = {
             data.Result.forEach((v,i) => {
               let rec = v.Creative;
               if(rec.Code == "ADVERTISEHERE") {
-                if(s.BuyAdTemplate == "image") { //Pre Done Image
+                if(s.BuyAdTemplate == "images") { //Pre Done Image
                   let href = document.createElement("a");
                   let img = document.createElement("img");
-                  href.id=s.DomId + "-" + i; href.href=rec.TargetUrl; href.target="_blank"; href.title=rec.Title; href.className=pb.Class + " site-banner-spot";
+                  href.id=s.DomId + "-" + i; href.href=s.BuyAdUrl; href.target="_blank"; href.title=rec.Title; href.className=pb.Class + " site-banner-spot";
                   img.alt=rec.Title; href.onclick = (e)=>{
                     try {
                       if(typeof window !== "undefined" && typeof window.ga !== "undefined") {
@@ -222,7 +225,7 @@ let Swinity = {
                   } else {
                     pb.Element.parentNode.appendChild(div);
                   }
-                  div.innerHTML = Swinity.Banners.GenCSSByuAd(Swinit.Banners.SizeByKey(s.Id),s.BuyAdUrl);
+                  div.innerHTML = Swinity.Banners.GenCSSByuAd(Swinity.Banners.SizeByKey(s.Id),s.BuyAdUrl);
                 } else { //CUSTOM DIV Template
                   let div = document.createElement("div");
                   div.id=s.DomId + "-" + i;
@@ -324,7 +327,7 @@ let Swinity = {
             MaxBuyAds: isNaN(Swinity.Banners.GetAttributeString(hObj,"data-maxbuyads")) ? "0" : Swinity.Banners.GetAttributeString(hObj,"data-maxbuyads"),
             Country: Swinity.Banners.GetAttributeString(hObj,"data-country"),
             BuyAdTemplate: Swinity.Banners.GetAttributeString(hObj,"data-buyadtemplate"),
-            BuyAdUrl: Swinity.Banners.GetAttributeString(hObj,"data-buyadurl") == "" ? "/contact" : Swinity.Banners.GetAttributeString(hObj,"data-buyadurl"),
+            BuyAdUrl: Swinity.Banners.GetAttributeString(hObj,"data-buyadurl") == "" ? "/contacts" : Swinity.Banners.GetAttributeString(hObj,"data-buyadurl"),
             MaxStandard: isNaN(Swinity.Banners.GetAttributeString(hObj,"data-maxstandard")) ? "1" : Swinity.Banners.GetAttributeString(hObj,"data-maxstandard"),
             DomId: Swinity.Banners.GetAttributeString(hObj,"data-domid") == "" ? Swinity.MakeId(15) : Swinity.Banners.GetAttributeString(hObj,"data-domid"),
           };
