@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="93ceebb5-868b-4da6-bffa-a98fc5b318e7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/buyads-yellow.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/buyads-yellow.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/SwBannersV2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/SwBannersV2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/SwBanners.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/SwBanners.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,19 +19,33 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/css/buyads-yellow.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
+            <state relative-caret-position="1122">
               <caret line="66" column="19" lean-forward="true" selection-start-line="66" selection-start-column="19" selection-end-line="66" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/SwBannersV2.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="18" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+            <state>
+              <caret lean-forward="true" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/js/SwBanners.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="773">
+              <caret line="353" selection-start-line="353" selection-end-line="353" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/js/SwBanners-Backup.js">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -61,17 +74,17 @@
         <option value="$PROJECT_DIR$/src/react/swbanner.js" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="//10.10.0.2/Swinity_Content/Scripts/buyads-yellow.css" />
-        <option value="$PROJECT_DIR$/src/js/SwBanners.js" />
         <option value="$PROJECT_DIR$/src/copyToServer.bat" />
         <option value="$PROJECT_DIR$/src/js/SwBannerV2.js" />
         <option value="$PROJECT_DIR$/src/css/buyads-yellow.css" />
         <option value="$PROJECT_DIR$/src/js/SwBannersV2.js" />
+        <option value="$PROJECT_DIR$/src/js/SwBanners.js" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="1992" />
-    <option name="y" value="15" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="1912" />
+    <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -165,7 +178,8 @@
       <workItem from="1562849047413" duration="837000" />
       <workItem from="1562914256811" duration="5450000" />
       <workItem from="1563028787962" duration="1146000" />
-      <workItem from="1563125398026" duration="2985000" />
+      <workItem from="1563125398026" duration="3584000" />
+      <workItem from="1563209675984" duration="42000" />
     </task>
     <task id="LOCAL-00001" summary="Updated Readme">
       <created>1561016162895</created>
@@ -185,10 +199,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25615000" />
+    <option name="totallyTimeSpent" value="26256000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1992" y="15" width="1936" height="1056" extended-state="0" />
+    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12328767" />
@@ -266,24 +280,27 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/SwBannerV2.js" />
-    <entry file="file://$PROJECT_DIR$/src/js/SwBanners.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="4" selection-end-line="246" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/css/buyads-yellow.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
+        <state relative-caret-position="1122">
           <caret line="66" column="19" lean-forward="true" selection-start-line="66" selection-start-column="19" selection-end-line="66" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/SwBannersV2.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="18" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/SwBanners-Backup.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/SwBanners.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="773">
+          <caret line="353" selection-start-line="353" selection-end-line="353" />
         </state>
       </provider>
     </entry>
