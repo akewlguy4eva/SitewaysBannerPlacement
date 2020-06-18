@@ -204,14 +204,14 @@ let Swinity = {
           loadData.push(dta);
         }
       });
-      console.log("Compressed Banners",loadData);
+      //console.log("Compressed Banners",loadData);
       let headers = {
         "X-Alt-Referer": document.location.href
       };
       Swinity.HttpPostJson(Swinity.Globals.RootApi + "/creatives",loadData,headers,(bannersData)=>{
         let banners=[];
         bannersData.Result.forEach((b,i)=>{b.recId = i; b.Used=false; banners.push(b);});
-        console.log("Data From Server:",banners);
+        //console.log("Data From Server:",banners);
 
         Swinity.Globals.BannerSpots.forEach((s) => {
             let ele = s.Element;
@@ -222,16 +222,16 @@ let Swinity = {
               let some = banners.filter((t)=>{if(!t.Zone) {return false} else {return t.Zone.Code == s.Id && !t.Used}});
               some = some.slice(0,s.Count);
               some.forEach((t)=>{
-                console.log("Marked " + t.recId + " Used");
+                //console.log("Marked " + t.recId + " Used");
                 t.Used=true;
               });
               data.Result = some;
             } else {
-              console.log("None left zone:"+s.Id,banners);
+              //console.log("None left zone:"+s.Id,banners);
               let some = banners.filter((t)=>{if(!t.Zone) {return false} else {return t.Zone.Code == s.Id}});
               some = some.slice(0,s.Count);
               some.forEach((t)=>{
-                console.log("Marked " + t.recId + " Used");
+                //console.log("Marked " + t.recId + " Used");
                 t.Used=true;
               });
               data.Result = some;

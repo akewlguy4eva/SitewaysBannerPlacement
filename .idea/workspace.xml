@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93ceebb5-868b-4da6-bffa-a98fc5b318e7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/SwBanners.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/SwBannersV3.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/SwBannersV3.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +68,7 @@
       <workItem from="1563028787962" duration="1146000" />
       <workItem from="1563125398026" duration="3584000" />
       <workItem from="1563209675984" duration="42000" />
-      <workItem from="1592474300978" duration="10846000" />
+      <workItem from="1592474300978" duration="10979000" />
     </task>
     <task id="LOCAL-00001" summary="Updated Readme">
       <created>1561016162895</created>
