@@ -188,8 +188,10 @@ let Swinity = {
           let lData = loadData.filter((t)=>{return t.Id == spot.Id && t.CountryCode == spot.Country});
           lData[0].Max = (parseInt(lData[0].Max) + parseInt(spot.Count)) + "";
           lData[0].Min = (parseInt(lData[0].Min) + parseInt(spot.Min)) + "";
+          lData[0].MaxStandard = (parseInt(lData[0].MaxStandard) + parseInt(spot.MaxStandard)) + "";
           if(isNaN(lData[0].MaxBuyAds)) { lData[0].MaxBuyAds = (parseInt(lData[0].MaxBuyAds) + parseInt(spot.MaxBuyAds)) + ""; }
           if(isNaN(lData[0].MinBuyAds)) {lData[0].MinBuyAds = (parseInt(lData[0].MinBuyAds) + parseInt(spot.MinBuyAds)) + ""; }
+
         } else {
           let dta = {
             "Id": spot.Id,
@@ -204,14 +206,14 @@ let Swinity = {
           loadData.push(dta);
         }
       });
-      //console.log("Compressed Banners",loadData);
+      console.log("Compressed Banners",loadData);
       let headers = {
         "X-Alt-Referer": document.location.href
       };
       Swinity.HttpPostJson(Swinity.Globals.RootApi + "/creatives",loadData,headers,(bannersData)=>{
         let banners=[];
         bannersData.Result.forEach((b,i)=>{b.recId = i; b.Used=false; banners.push(b);});
-        //console.log("Data From Server:",banners);
+        console.log("Data From Server:",banners);
 
         Swinity.Globals.BannerSpots.forEach((s) => {
             let ele = s.Element;
@@ -227,7 +229,7 @@ let Swinity = {
               });
               data.Result = some;
             } else {
-              //console.log("None left zone:"+s.Id,banners);
+              console.log("None left zone:"+s.Id,banners);
               let some = banners.filter((t)=>{if(!t.Zone) {return false} else {return t.Zone.Code == s.Id}});
               some = some.slice(0,s.Count);
               some.forEach((t)=>{
@@ -247,7 +249,7 @@ let Swinity = {
             data.Result.forEach((v,i) => {
               let rec = v.Creative;
               if(rec.Code == "ADVERTISEHERE") {
-                if(true || s.BuyAdTemplate == "images") { //Pre Done Image
+                if(s.BuyAdTemplate == "images") { //Pre Done Image
                   let href = document.createElement("a");
                   let img = document.createElement("img");
                   href.id=s.DomId + "-" + i; href.href=s.BuyAdUrl; href.target="_blank"; href.title="Buy"; href.className=pb.Class + " site-banner-spot";
@@ -517,10 +519,11 @@ let Swinity = {
             Country: Swinity.Banners.GetAttributeString(hObj,"data-country"),
             BuyAdTemplate: Swinity.Banners.GetAttributeString(hObj,"data-buyadtemplate"),
             BuyAdUrl: Swinity.Banners.GetAttributeString(hObj,"data-buyadurl") == "" ? "/contacts" : Swinity.Banners.GetAttributeString(hObj,"data-buyadurl"),
-            MaxStandard: isNaN(Swinity.Banners.GetAttributeString(hObj,"data-maxstandard")) ? "1" : Swinity.Banners.GetAttributeString(hObj,"data-maxstandard"),
+            MaxStandard: isNaN(Swinity.Banners.GetAttributeString(hObj,"data-maxstandard")) ? "3" : Swinity.Banners.GetAttributeString(hObj,"data-maxstandard"),
             DomId: Swinity.Banners.GetAttributeString(hObj,"data-domid") == "" ? Swinity.MakeId(15) : Swinity.Banners.GetAttributeString(hObj,"data-domid"),
           };
           tObj.Min = isNaN(Swinity.Banners.GetAttributeString(hObj,"data-min")) ? tObj.Count : Swinity.Banners.GetAttributeString(hObj,"data-min");
+          tObj.MaxStandard = "3"
           hObj.setAttribute("data-domid",tObj.DomId);
           if(tObj.Count > "0") {
             spots.push(tObj);

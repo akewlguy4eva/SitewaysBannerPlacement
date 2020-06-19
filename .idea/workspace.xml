@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93ceebb5-868b-4da6-bffa-a98fc5b318e7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/SwBannersV3.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/SwBannersV3.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -68,7 +69,7 @@
       <workItem from="1563028787962" duration="1146000" />
       <workItem from="1563125398026" duration="3584000" />
       <workItem from="1563209675984" duration="42000" />
-      <workItem from="1592474300978" duration="10979000" />
+      <workItem from="1592474300978" duration="12522000" />
     </task>
     <task id="LOCAL-00001" summary="Updated Readme">
       <created>1561016162895</created>
@@ -95,9 +96,9 @@
     <option name="LAST_COMMIT_MESSAGE" value="Updated Readme" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-1063" y="326" key="FileChooserDialogImpl" timestamp="1592485782011">
+    <state x="-1063" y="326" key="FileChooserDialogImpl" timestamp="1592528164307">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1063" y="326" key="FileChooserDialogImpl/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1592485782011" />
+    <state x="-1063" y="326" key="FileChooserDialogImpl/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1592528164307" />
   </component>
 </project>
