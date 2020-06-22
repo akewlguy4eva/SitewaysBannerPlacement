@@ -17,7 +17,7 @@ const AdSlot = {
 
 let Swinity = {
   Globals: {
-    RootApi: "https://app.swinity.com/api",
+    RootApi: "https://stageapp.swinity.com/api",
     LogEnabled: true,
     BannerSpots: [],
     HttpCache: [],
@@ -186,11 +186,16 @@ let Swinity = {
         if(loadData.some((t)=>{return t.Id == spot.Id && t.CountryCode == spot.Country})) { //Compress By Zone/Country
           //Compress To Single So No Dude Banners
           let lData = loadData.filter((t)=>{return t.Id == spot.Id && t.CountryCode == spot.Country});
-          lData[0].Max = (parseInt(lData[0].Max) + parseInt(spot.Count)) + "";
-          lData[0].Min = (parseInt(lData[0].Min) + parseInt(spot.Min)) + "";
-          lData[0].MaxStandard = (parseInt(lData[0].MaxStandard) + parseInt(spot.MaxStandard)) + "";
-          if(isNaN(lData[0].MaxBuyAds)) { lData[0].MaxBuyAds = (parseInt(lData[0].MaxBuyAds) + parseInt(spot.MaxBuyAds)) + ""; }
-          if(isNaN(lData[0].MinBuyAds)) {lData[0].MinBuyAds = (parseInt(lData[0].MinBuyAds) + parseInt(spot.MinBuyAds)) + ""; }
+          if(!isNaN(lData[0].Max) && !isNaN(spot.Max)) {lData[0].Max = (parseInt(lData[0].Max) + parseInt(spot.Count)) + "";}
+          if(!isNaN(lData[0].Min) && !isNaN(spot.Min)) {lData[0].Min = (parseInt(lData[0].Min) + parseInt(spot.Min)) + "";}
+          if(!isNaN(lData[0].MaxStandard) && !isNaN(spot.MaxStandard)) {lData[0].MaxStandard = (parseInt(lData[0].MaxStandard) + parseInt(spot.Max)) + "";}
+          if(!isNaN(lData[0].MaxAdvertiseHere) && !isNaN(spot.MaxBuyAds)) { lData[0].MaxAdvertiseHere = (parseInt(lData[0].MaxAdvertiseHere) + parseInt(spot.MaxBuyAds)) + ""; }
+          if(!isNaN(lData[0].MinAdvertiseHere) && !isNaN(spot.MinBuyAds)) {lData[0].MinAdvertiseHere = (parseInt(lData[0].MinAdvertiseHere) + parseInt(spot.MinBuyAds)) + ""; }
+          if(isNaN(lData[0].Max)) {lData[0].Max="";}
+          if(isNaN(lData[0].Min)) {lData[0].Min="";}
+          if(isNaN(lData[0].MaxStandard)) {lData[0].MaxStandard=lData[0].Max;}
+          if(isNaN(lData[0].MaxAdvertiseHere)) {lData[0].MaxAdvertiseHere="";}
+          if(isNaN(lData[0].MinAdvertiseHere)) {lData[0].MinAdvertiseHere="";}
 
         } else {
           let dta = {
@@ -206,14 +211,15 @@ let Swinity = {
           loadData.push(dta);
         }
       });
-      console.log("Compressed Banners",loadData);
+      //console.log("Compressed Banners",loadData);
       let headers = {
         "X-Alt-Referer": document.location.href
       };
+      if(loadData.length<=0) {return;}
       Swinity.HttpPostJson(Swinity.Globals.RootApi + "/creatives",loadData,headers,(bannersData)=>{
         let banners=[];
         bannersData.Result.forEach((b,i)=>{b.recId = i; b.Used=false; banners.push(b);});
-        console.log("Data From Server:",banners);
+        //console.log("Data From Server:",banners);
 
         Swinity.Globals.BannerSpots.forEach((s) => {
             let ele = s.Element;
@@ -229,7 +235,7 @@ let Swinity = {
               });
               data.Result = some;
             } else {
-              console.log("None left zone:"+s.Id,banners);
+              //console.log("None left zone:"+s.Id,banners);
               let some = banners.filter((t)=>{if(!t.Zone) {return false} else {return t.Zone.Code == s.Id}});
               some = some.slice(0,s.Count);
               some.forEach((t)=>{
@@ -360,140 +366,6 @@ let Swinity = {
           });
       });
 
-      /*
-      Swinity.Globals.BannerSpots.forEach((s) => {
-        let ele = s.Element;
-        ele.setAttribute("style","display: none");
-        let headers = {
-          "X-Alt-Referer": document.location.href
-        };
-        let qry = "";
-        if(s.Country !== "") {
-          qry += "&countryCode=" + s.Country;
-        }
-        if(s.MaxStandard !== "") {
-          qry += "&maxstandard=" + s.MaxStandard;
-        }
-
-
-        Swinity.HttpGet(Swinity.Globals.RootApi + `/creatives/${s.Id}?channel=${s.Channel}&max=${s.Count}&minAdvertiseHere=${s.MinBuyAds}&maxAdvertiseHere=${s.MaxBuyAds}&min=${s.Min}${qry}`,headers,(data,pb) => {
-          if(data.Code === 200) {
-
-            data.Result.forEach((v,i) => {
-              let rec = v.Creative;
-              if(rec.Code == "ADVERTISEHERE") {
-                if(true || s.BuyAdTemplate == "images") { //Pre Done Image
-                  let href = document.createElement("a");
-                  let img = document.createElement("img");
-                  href.id=s.DomId + "-" + i; href.href=s.BuyAdUrl; href.target="_blank"; href.title=rec.Title; href.className=pb.Class + " site-banner-spot";
-                  img.alt=rec.Title; href.onclick = (e)=>{
-                    try {
-                      if(typeof window !== "undefined" && typeof window.ga !== "undefined") {
-                        window.ga('send', 'event', 'Banner', 'Click', v.Click.Name);
-                      }
-                    } catch(gex) {}
-                    try {
-                      Swinity.HttpPostJson(Swinity.Globals.RootApi + `/creatives/click`,{Guid: v.Click.Guid},headers,()=>{});
-                    } catch(aex) {}
-                  };
-                  img.src=Swinity.Banners.RandomBuyAdImage(Swinity.Banners.SizeByKey(s.Id)); //The Image Src We Set From Random
-                  href.appendChild(img);
-                  let ext = document.getElementById(href.id);
-                  if(ext !== null) {
-                    pb.Element.parentNode.replaceChild(href,ext);
-                  } else {
-                    pb.Element.parentNode.appendChild(href);
-                  }
-                } else if(s.BuyAdTemplate.startsWith("css")) { //CSS Based Template
-                  let div = document.createElement("div");
-                  div.id=s.DomId + "-" + i;
-                  div.className=pb.Class + " site-banner-spot";
-                  let ext = document.getElementById(div.id);
-                  if(ext !== null) {
-                    pb.Element.parentNode.replaceChild(div,ext);
-                  } else {
-                    pb.Element.parentNode.appendChild(div);
-                  }
-                  div.innerHTML = Swinity.Banners.GenCSSBuyAd(Swinity.Banners.SizeByKey(s.Id),s.BuyAdUrl);
-                } else { //CUSTOM DIV Template
-                  let div = document.createElement("div");
-                  div.id=s.DomId + "-" + i;
-                  div.className=pb.Class + " site-banner-spot";
-                  let ext = document.getElementById(div.id);
-                  if(ext !== null) {
-                    pb.Element.parentNode.replaceChild(div,ext);
-                  } else {
-                    pb.Element.parentNode.appendChild(div);
-                  }
-                  let tmp = document.getElementById(s.BuyAdTemplate);
-                  if(tmp!==null) {
-                    div.innerHTML = tmp.innerHTML;
-                  } else {
-                    console.log("Could Not Read Template But Have Ads",s.BuyAdTemplate);
-                  }
-                }
-              } else {
-                let href = document.createElement("a");
-                let img = document.createElement("img");
-                href.id=s.DomId + "-" + i; href.href=rec.TargetUrl; href.target="_blank"; href.title=rec.Title; href.className=pb.Class + " site-banner-spot";
-                img.src=rec.Url; img.alt=rec.Title; href.onclick = (e)=>{
-                  try {
-                    if(typeof window !== "undefined" && typeof window.ga !== "undefined") {
-                      window.ga('send', 'event', 'Banner', 'Click', v.Click.Name);
-                    }
-                  } catch(gex) {}
-                  try {
-                    Swinity.HttpPostJson(Swinity.Globals.RootApi + `/creatives/click`,{Guid: v.Click.Guid},headers,()=>{});
-                  } catch(aex) {}
-                };
-                href.appendChild(img);
-                let ext = document.getElementById(href.id);
-                if(ext !== null) {
-                  pb.Element.parentNode.replaceChild(href,ext);
-                } else {
-                  pb.Element.parentNode.appendChild(href);
-                }
-              }
-
-              //Adding Code Here For Banner Impressions
-              try {
-                if(typeof window !== "undefined" && typeof window.ga !== "undefined") {
-                  if(!Swinity.isNullOrUndefined(rec.Click.Name)) {
-                    window.ga('send', 'event', 'Banner', 'Impression', rec.Click.Name);
-                  } else {
-                    if(rec.Code == "ADVERTISEHERE") {
-                      window.ga('send', 'event', 'Banner', 'Impression', s.Id + " - Advertise Here");
-                    }
-                  }
-                }
-              } catch(gex) {
-                console.warn("Error doing google impression",gex)
-              }
-            });
-
-            //Remove any previous banners :) On Redo :)
-            let col = document.getElementsByClassName("site-banner-spot");
-            let eles = Array.from(col);
-            for(let xInt=0; xInt<=eles.length-1; xInt++) {
-              let nId = eles[xInt].id;
-              let rem = false;
-              if(eles[xInt].parentNode == pb.Element.parentNode) {
-                rem=true;
-                data.Result.forEach((v,i) => {
-                  let cId = s.DomId + "-" + i;
-                  if(cId == nId) {
-                    rem=false;
-                  }
-                });
-              }
-              if(rem) {
-                eles[xInt].parentNode.removeChild(eles[xInt]);
-              }
-            }
-          }
-        },s,usecache);
-      });
-      */
 
     },
     GetAttributeString(obj,nme) {
@@ -523,7 +395,6 @@ let Swinity = {
             DomId: Swinity.Banners.GetAttributeString(hObj,"data-domid") == "" ? Swinity.MakeId(15) : Swinity.Banners.GetAttributeString(hObj,"data-domid"),
           };
           tObj.Min = isNaN(Swinity.Banners.GetAttributeString(hObj,"data-min")) ? tObj.Count : Swinity.Banners.GetAttributeString(hObj,"data-min");
-          tObj.MaxStandard = "3"
           hObj.setAttribute("data-domid",tObj.DomId);
           if(tObj.Count > "0") {
             spots.push(tObj);
