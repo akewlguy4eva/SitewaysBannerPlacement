@@ -17,7 +17,7 @@ const AdSlot = {
 
 let Swinity = {
   Globals: {
-    RootApi: "https://stageapp.swinity.com/api",
+    RootApi: "https://app.swinity.com/api",
     LogEnabled: true,
     BannerSpots: [],
     HttpCache: [],
@@ -185,8 +185,11 @@ let Swinity = {
 
         if(loadData.some((t)=>{return t.Id == spot.Id && t.CountryCode == spot.Country})) { //Compress By Zone/Country
           //Compress To Single So No Dude Banners
+          if(spot.Count==10 && spot.Id == "300x250") {
+            spot.Count = 1;
+          }
           let lData = loadData.filter((t)=>{return t.Id == spot.Id && t.CountryCode == spot.Country});
-          if(!isNaN(lData[0].Max) && !isNaN(spot.Max)) {lData[0].Max = (parseInt(lData[0].Max) + parseInt(spot.Count)) + "";}
+          if(!isNaN(lData[0].Max) && !isNaN(spot.Count)) {lData[0].Max = (parseInt(lData[0].Max) + parseInt(spot.Count)) + "";}
           if(!isNaN(lData[0].Min) && !isNaN(spot.Min)) {lData[0].Min = (parseInt(lData[0].Min) + parseInt(spot.Min)) + "";}
           if(!isNaN(lData[0].MaxStandard) && !isNaN(spot.MaxStandard)) {lData[0].MaxStandard = (parseInt(lData[0].MaxStandard) + parseInt(spot.Max)) + "";}
           if(!isNaN(lData[0].MaxAdvertiseHere) && !isNaN(spot.MaxBuyAds)) { lData[0].MaxAdvertiseHere = (parseInt(lData[0].MaxAdvertiseHere) + parseInt(spot.MaxBuyAds)) + ""; }
@@ -196,7 +199,6 @@ let Swinity = {
           if(isNaN(lData[0].MaxStandard)) {lData[0].MaxStandard=lData[0].Max;}
           if(isNaN(lData[0].MaxAdvertiseHere)) {lData[0].MaxAdvertiseHere="";}
           if(isNaN(lData[0].MinAdvertiseHere)) {lData[0].MinAdvertiseHere="";}
-
         } else {
           let dta = {
             "Id": spot.Id,
