@@ -321,6 +321,7 @@ let Swinity = {
                     Swinity.HttpPostJson(Swinity.Globals.RootApi + `/creatives/click`,{Guid: v.Click.Guid},headers,()=>{});
                   } catch(aex) {}
                 };
+                href.rel=v.Rel;
                 href.appendChild(img);
                 let ext = document.getElementById(href.id);
                 if(ext !== null) {
@@ -333,7 +334,7 @@ let Swinity = {
               //Adding Code Here For Banner Impressions
               try {
                 if(typeof window !== "undefined" && typeof window.ga !== "undefined") {
-                  if(!Swinity.isNullOrUndefined(rec.Click.Name)) {
+                  if(!Swinity.isNullOrUndefined(rec.Click) && !Swinity.isNullOrUndefined(rec.Click.Name)) {
                     window.ga('send', 'event', 'Banner', 'Impression', rec.Click.Name);
                   } else {
                     if(rec.Code == "ADVERTISEHERE") {
@@ -342,7 +343,7 @@ let Swinity = {
                   }
                 }
               } catch(gex) {
-                console.warn("Error doing google impression",gex)
+                //console.warn("Error doing google impression",gex)
               }
             });
 
