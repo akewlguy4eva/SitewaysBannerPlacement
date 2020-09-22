@@ -127,3 +127,146 @@
 .flex-center {
     text-decoration: none;
 }
+
+
+.link-buttons-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 20px 0px;
+    margin-top: 0px;
+    min-height: 30px;
+}
+
+
+.enews-button {
+    background-color: #F7F7F7;
+    border: 1px solid #D6D6D6;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    background: url(https://static.escortnews.eu/images/gradients/gradient_4.png) 0 0 repeat-x;
+    color: #ffffff;
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    -moz-transition: 0.3s;
+    -webkit-transition: 0.3s;
+}
+
+.enews-button:hover {
+    color: #000;
+}
+
+.link-button {
+    font-size: 15px;
+    font-weight: normal;
+    font-family: "bebas", Arial, Helvetica, sans-serif;
+    border: solid 1px #000;
+    cursor: pointer;
+    margin-right: 5px;
+    padding: 5px 10px;
+    transition: 0.3s;
+    -moz-transition: 0.3s;
+    -webkit-transition: 0.3s;
+}
+
+@media(max-width: 640px) {
+    .link-buttons-container { flex-wrap: wrap; justify-content: center; }
+    .link-button { margin-bottom: 5px; }
+    .enews-button { margin-bottom: 5px; }
+}
+
+
+.enews-button.grey {
+    background: #F7F7F7;
+    color: #000;
+}
+
+.enews-button.grey:hover {
+    background: #bebebe;
+    color: #000;
+}
+
+
+.link-button.yellow {
+    color: #000;
+    background-color: #FBCC43;
+}
+
+.link-button.yellow:hover {
+    color: #FFF;
+    background-color: #716f0f;
+}
+
+.link-button.orange {
+    color: #000;
+    background-color: #f32308;
+}
+
+.link-button.orange:hover {
+    color: #FFF;
+    background-color: #b41d0a;
+}
+
+.link-button.red {
+    color: #FFF;
+    background-color: #F64457;
+}
+
+.link-button.red:hover {
+    color: #000;
+    background-color: #d70636;
+}
+
+.link-button.black {
+    color: #FFF;
+    background-color: #130105;
+}
+
+.link-button.black:hover {
+    color: #000;
+    background-color: #e5e5e5;
+}
+
+.link-button.grey {
+    color: #000;
+    background-color: #CCC;
+}
+
+.link-button.grey:hover {
+    color: #FFF;
+    background-color: #555454;
+}
+
+.link-button.purple {
+    color: #ffffff;
+    background-color: #752fa4;
+}
+
+.link-button.purple:hover {
+    color: #100f0f;
+    background-color: #a454d9;
+}
+
+.link-button.blue {
+    color: #ffffff;
+    background-color: #263691;
+}
+
+.link-button.blue:hover {
+    color: #100f0f;
+    background-color: #495bbe;
+}
+
+.link-button.green {
+    color: #ffffff;
+    background-color: #368513;
+}
+
+.link-button.green:hover {
+    color: #100f0f;
+    background-color: #66bf3e;
+}

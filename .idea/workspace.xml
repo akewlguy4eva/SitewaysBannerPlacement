@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93ceebb5-868b-4da6-bffa-a98fc5b318e7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/SwBannersV3.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/buyads-yellow.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/buyads-yellow.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/SwBanners.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/SwBanners.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/index2.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/index2.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +36,7 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SitewaysReact-Links/src/Siteways.React.Server" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SitewaysReact/src/Siteways.React.Server" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -41,6 +45,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -79,6 +84,7 @@
       <workItem from="1596054804217" duration="858000" />
       <workItem from="1596120603805" duration="20000" />
       <workItem from="1596581939462" duration="664000" />
+      <workItem from="1600709409248" duration="11008000" />
     </task>
     <task id="LOCAL-00001" summary="Updated Readme">
       <created>1561016162895</created>
@@ -121,11 +127,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1594122154749" />
-    <state x="857" y="326" key="FileChooserDialogImpl" timestamp="1596582603837">
+    <state x="857" y="326" key="FileChooserDialogImpl" timestamp="1600718866517">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1063" y="326" key="FileChooserDialogImpl/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1594142300058" />
-    <state x="857" y="326" key="FileChooserDialogImpl/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1596582603837" />
+    <state x="-1063" y="326" key="FileChooserDialogImpl/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1600709540565" />
+    <state x="857" y="326" key="FileChooserDialogImpl/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1600718866517" />
     <state x="789" y="240" key="RollbackChangesDialog" timestamp="1594122116610">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
