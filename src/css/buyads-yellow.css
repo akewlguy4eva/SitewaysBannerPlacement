@@ -157,7 +157,7 @@
 }
 
 .enews-button:hover {
-    color: #000;
+    color: #c12929;
 }
 
 .link-button {
@@ -186,6 +186,16 @@
 }
 
 .enews-button.grey:hover {
+    background: #bebebe;
+    color: #000;
+}
+
+.enews-button.black {
+    background: #F7F7F7;
+    color: #000;
+}
+
+.enews-button.black:hover {
     background: #bebebe;
     color: #000;
 }

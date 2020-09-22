@@ -21,6 +21,7 @@ let Swinity = {
     LogEnabled: true,
     BannerSpots: [],
     HttpCache: [],
+    Impressions: [],
     BuyImages: [
       {Size: "728x90", Theme: "ENG-Modern", Url: "https://cdn.topescort.com/library/source/v/1/342022cc-a33e-416d-859e-084141ab16a1.gif"},
       {Size: "728x90", Theme: "ENG-Modern", Url: "https://cdn.topescort.com/library/source/v/1/f13833b6-07d1-409c-8938-76dcdb3bd552.gif"},
@@ -37,7 +38,49 @@ let Swinity = {
       {Size: "160x600", Theme: "ENG-Modern", Url: "https://cdn.topescort.com/library/source/v/1/b902347e-04f5-46db-b440-1f9ddbd756f8.gif"},
       {Size: "160x600", Theme: "ENG-Modern", Url: "https://cdn.topescort.com/library/source/v/1/9903bbc2-d1f6-4a87-b594-ec9c49c59b1a.gif"},
       {Size: "468x60", Theme: "ENG-Modern", Url: "https://cdn.topescort.com/library/source/v/1/e01cbfaf-4db0-4f6c-967d-c077129517db.jpg"}
-    ]
+    ],
+    Loop: setInterval(()=>{
+      console.log("Here @ Loop",Swinity.Globals.Impressions);
+      let Impressions = Swinity.Globals.Impressions;
+      if(Impressions.length>0) {
+        let lastI = Impressions[Impressions.length - 1];
+        let ttLv = new Date().getTime() - new Date(lastI.Requested);
+        if (ttLv > 1000) {
+          let pobj = {
+            Hash: "",Channel: "",
+            UserId: 0,Ads: []
+          };
+          Impressions.forEach((b)=> {pobj.Ads.push(b.Banner)});
+          //console.log("Posting",pobj);
+          Swinity.processImpressions(pobj);
+          Swinity.Globals.Impressions = []; clearInterval(Swinity.Globals.Loop);
+        }
+      }
+
+    },10000)
+  },
+  processImpressions(pobj) {
+    //console.log("Posting Impression",pobj);
+    let headers = {
+      "X-Alt-Referer": window.location.href,
+    };
+    Swinity.HttpPostJson(`${Swinity.Globals.RootApi}/creatives/impression`,pobj,headers,(data)=>{
+      //console.log("Response:",data);
+    });
+  },
+  postImpression: (obj) => {
+    //try {
+    if(obj.Zone && obj.Zone.CountImpressions) {
+      let Impressions = Swinity.Globals.Impressions;
+      let pobj = {Requested: new Date(), Banner: {
+          Click: {Guid: obj.Click.Guid},
+          Creative: {Id: obj.Creative.Id, Campaign: {Id : obj.Creative.Campaign.Id}},
+          Placement: {Id: obj.Placement.Id},
+          Zone: {Id: obj.Zone.Id}
+        }};
+      Impressions.push(pobj);
+    }
+    //} catch(ex) {}
   },
   Log: (txt,obj) => {
     if(Swinity.Globals.LogEnabled) {
@@ -271,11 +314,7 @@ let Swinity = {
         let bBanners = bannersData.Result.filter((t) => { return typeof t.Template != "undefined" });
         let sBanners = bannersData.Result.filter((t) => { return typeof t.Template == "undefined" });
         bBanners = bBanners.sort((a,b) => {return a.Index - b.Index});
-
-        console.log("BBanners 1",bBanners);
         bBanners = Swinity.Banners.ExcludeBanners(acc,bBanners);
-        console.log("BBanners 2",bBanners);
-
         sBanners = sBanners.concat(bBanners);
         sBanners.forEach((b,i)=>{b.recId = i; b.Used=false; banners.push(b);});
 
@@ -310,6 +349,7 @@ let Swinity = {
             }
             let pb = s;
             data.Result.forEach((v,i) => {
+              Swinity.postImpression(v);
               let rec = v.Creative;
               if(rec.Code == "ADVERTISEHERE") {
                 if(s.BuyAdTemplate == "images") { //Pre Done Image
