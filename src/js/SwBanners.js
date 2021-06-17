@@ -2,7 +2,7 @@
  Swinity Banner Script.
  A script to read mutiple sources and replace banners setup with <INS tags
  or to do inline replaces.
- Ver: .01 - Do some setup for class etc..
+ Ver: .14 - Do some setup for class etc..
  **************************************************************************************/
 
 const AdSlot = {
@@ -17,7 +17,7 @@ const AdSlot = {
 
 let Swinity = {
   Globals: {
-    RootApi: "https://app22.swinity.com/api",
+    RootApi: "https://app.swinity.com/api",
     LogEnabled: true,
     BannerSpots: [],
     HttpCache: [],
@@ -40,7 +40,6 @@ let Swinity = {
       {Size: "468x60", Theme: "ENG-Modern", Url: "https://cdn.topescort.com/library/source/v/1/e01cbfaf-4db0-4f6c-967d-c077129517db.jpg"}
     ],
     Loop: setInterval(()=>{
-      console.log("Here @ Loop",Swinity.Globals.Impressions);
       let Impressions = Swinity.Globals.Impressions;
       if(Impressions.length>0) {
         let lastI = Impressions[Impressions.length - 1];
@@ -57,7 +56,7 @@ let Swinity = {
         }
       }
 
-    },10000)
+    },3000)
   },
   processImpressions(pobj) {
     //console.log("Posting Impression",pobj);
@@ -65,6 +64,21 @@ let Swinity = {
       "X-Alt-Referer": window.location.href,
     };
     Swinity.HttpPostJson(`${Swinity.Globals.RootApi}/creatives/impression`,pobj,headers,(data)=>{
+      //console.log("Response:",data);
+    });
+  },
+
+  postClick: (obj) => {
+    let headers = {
+      "X-Alt-Referer": window.location.href,
+    };
+    let pobj = {Requested: new Date(), Ads: [{
+        Click: {Guid: obj.Click.Guid},
+        Creative: {Id: obj.Creative.Id, Campaign: {Id : obj.Creative.Campaign.Id}},
+        Placement: {Id: obj.Placement.Id},
+        Zone: {Id: obj.Zone.Id}
+      }]};
+    Swinity.HttpPostJson(`${Swinity.Globals.RootApi}/creatives/impression?Click=true`,pobj,headers,(data)=>{
       //console.log("Response:",data);
     });
   },
@@ -225,6 +239,11 @@ let Swinity = {
       return cde;
     },
 
+    rotate() {
+      let t = Math.floor(Math.random() * Math.floor(100));
+      return t>50;
+    },
+
     ExcludeBanners: (acc, banners) => {
       let host = Swinity.getSubdomain(new URL(document.location.href).host);
       let ibanners = [];
@@ -235,13 +254,10 @@ let Swinity = {
           add = false;
         }
         if(lnk.Include.length>0) {
-          lnk.Include.forEach((inc)=>{
-            if(inc.Type == "Country") {
-              if(inc.Value !== acc) {
-                add = false;
-              }
-            }
-          });
+          let inc = lnk.Include.filter((t) => {return t.Value == acc});
+          if(inc.length<=0) {
+            add = false;
+          }
         }
         if(lnk.Exclude.length>0) {
           lnk.Exclude.forEach((exc)=>{
@@ -259,7 +275,23 @@ let Swinity = {
         }
         if(add) {ibanners.push(lnk)}
       });
-      return ibanners;
+
+      //ADDED DUPE BUTTON CODE CHECK
+      let tit = []; let dlinks = [];
+      ibanners.map((lnk) => {
+        if(tit.some((t) => {return t == lnk.Creative.Title && lnk.Creative.Size.Width == 88})) {
+          let x = dlinks.findIndex((t) => {return t.Creative.Title == lnk.Creative.Title && lnk.Creative.Size.Width == 88});
+
+          if(x>=0 && Swinity.Banners.rotate()) {
+            dlinks[x] = lnk;
+          }
+        } else {
+          tit.push(lnk.Creative.Title);
+          dlinks.push(lnk);
+        }
+      });
+
+      return dlinks;
     },
 
     //This Is Function To Call To Set The Current Banners
@@ -309,7 +341,7 @@ let Swinity = {
         "X-Alt-Referer": document.location.href
       };
       if(loadData.length<=0) {return;}
-      Swinity.HttpPostJson(Swinity.Globals.RootApi + "/creatives?count=true",loadData,headers,(bannersData)=>{
+      Swinity.HttpPostJson(Swinity.Globals.RootApi + "/creatives?count=false",loadData,headers,(bannersData)=>{
         let banners=[];
         let bBanners = bannersData.Result.filter((t) => { return typeof t.Template != "undefined" });
         let sBanners = bannersData.Result.filter((t) => { return typeof t.Template == "undefined" });
@@ -349,8 +381,10 @@ let Swinity = {
             }
             let pb = s;
             data.Result.forEach((v,i) => {
+              s.Rendered++;
               Swinity.postImpression(v);
               let rec = v.Creative;
+              rec.Rel = v.Rel
               if(rec.Code == "ADVERTISEHERE") {
                 if(s.BuyAdTemplate == "images") { //Pre Done Image
                   let href = document.createElement("a");
@@ -363,7 +397,7 @@ let Swinity = {
                       }
                     } catch(gex) {}
                     try {
-                      Swinity.HttpPostJson(Swinity.Globals.RootApi + `/creatives/click`,{Guid: v.Click.Guid},headers,()=>{});
+                      Swinity.postClick(v);
                     } catch(aex) {}
                   };
                   img.src=Swinity.Banners.RandomBuyAdImage(Swinity.Banners.SizeByKey(s.Id)); //The Image Src We Set From Random
@@ -408,29 +442,33 @@ let Swinity = {
                 //console.log("S:",s);
 
                 if(s.Button) {
-                  let button = document.createElement("button");
-                  button.id=s.DomId + "-" + i; button.innerHTML = rec.Title; button.className = s.Class !== "" ? s.Class + " " + v.Template : "link-button " + v.Template;
-                  button.onclick = (e) => {
-                    try {
-                      if(typeof window !== "undefined" && typeof window.ga !== "undefined") {
-                        window.ga('send', 'event', 'Banner', 'Click', v.Click.Name);
+                  if(s.Rendered <= s.RenderMax) {
+                    let button = document.createElement("button");
+                    button.id=s.DomId + "-" + i; button.innerHTML = rec.Title; button.className = s.Class !== "" ? s.Class + " " + v.Template : "link-button " + v.Template;
+                    button.onclick = (e) => {
+                      try {
+                        if(typeof window !== "undefined" && typeof window.ga !== "undefined") {
+                          window.ga('send', 'event', 'Banner', 'Click', v.Click.Name);
+                        }
+                      } catch(gex) {}
+                      try {
+                        Swinity.postClick(v);
+                      } catch(aex) {
+                        console.log("Error", aex);
                       }
-                    } catch(gex) {}
-                    try {
-                      Swinity.HttpPostJson(Swinity.Globals.RootApi + `/creatives/click`,{Guid: v.Click.Guid},headers,()=>{});
-                    } catch(aex) {}
-                    window.open(rec.TargetUrl);
-                  }
-                  let ext = document.getElementById(button.id);
-                  if(ext !== null) {
-                    pb.Element.parentNode.replaceChild(button,ext);
-                  } else {
-                    pb.Element.parentNode.appendChild(button);
+                      window.open(rec.TargetUrl);
+                    }
+                    let ext = document.getElementById(button.id);
+                    if(ext !== null) {
+                      pb.Element.parentNode.replaceChild(button,ext);
+                    } else {
+                      pb.Element.parentNode.appendChild(button);
+                    }
                   }
                 } else {
                   let href = document.createElement("a");
                   let img = document.createElement("img");
-                  href.id=s.DomId + "-" + i; href.href=rec.TargetUrl; href.target="_blank"; href.title=rec.Title; href.className=pb.Class + " site-banner-spot";
+                  href.id=s.DomId + "-" + i; href.rel=rec.Rel; href.href=rec.TargetUrl; href.target="_blank"; href.title=rec.Title; href.className=pb.Class + " site-banner-spot";
                   img.src=rec.Url; img.alt=rec.Title; href.onclick = (e)=>{
                     try {
                       if(typeof window !== "undefined" && typeof window.ga !== "undefined") {
@@ -438,7 +476,7 @@ let Swinity = {
                       }
                     } catch(gex) {}
                     try {
-                      Swinity.HttpPostJson(Swinity.Globals.RootApi + `/creatives/click`,{Guid: v.Click.Guid},headers,()=>{});
+                      Swinity.postClick(v);
                     } catch(aex) {}
                   };
                   href.appendChild(img);
@@ -518,7 +556,12 @@ let Swinity = {
             BuyAdUrl: Swinity.Banners.GetAttributeString(hObj,"data-buyadurl") == "" ? "/contacts" : Swinity.Banners.GetAttributeString(hObj,"data-buyadurl"),
             MaxStandard: isNaN(Swinity.Banners.GetAttributeString(hObj,"data-maxstandard")) ? "3" : Swinity.Banners.GetAttributeString(hObj,"data-maxstandard"),
             DomId: Swinity.Banners.GetAttributeString(hObj,"data-domid") == "" ? Swinity.MakeId(15) : Swinity.Banners.GetAttributeString(hObj,"data-domid"),
+            RenderMax: isNaN(Swinity.Banners.GetAttributeString(hObj,"data-rendermax")) ? 1000 : parseInt(Swinity.Banners.GetAttributeString(hObj,"data-rendermax")),
+            Rendered: 0
           };
+          if(isNaN(tObj.RenderMax)) {
+            tObj.RenderMax = 1000;
+          }
           tObj.Min = isNaN(Swinity.Banners.GetAttributeString(hObj,"data-min")) ? tObj.Count : Swinity.Banners.GetAttributeString(hObj,"data-min");
           hObj.setAttribute("data-domid",tObj.DomId);
           if(tObj.Count > "0") {
