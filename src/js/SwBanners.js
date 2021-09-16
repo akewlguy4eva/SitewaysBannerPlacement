@@ -3,7 +3,69 @@
  A script to read mutiple sources and replace banners setup with <INS tags
  or to do inline replaces.
  Ver: .14 - Do some setup for class etc..
+ Ver: .15 Post Cache Setup
  **************************************************************************************/
+
+
+// Used to check objects for own properties
+const hasOwnProperty = Object.prototype.hasOwnProperty
+
+// Hashes a string
+const hash = (string) => {
+
+  let hash = 0
+
+  string = string.toString()
+
+  for(let i = 0; i < string.length; i++)
+  {
+    hash = (((hash << 5) - hash) + string.charCodeAt(i)) & 0xFFFFFFFF
+  }
+
+  return hash
+}
+
+// Deep hashes an object
+const object = (obj) => {
+  //
+  if(typeof obj.getTime == 'function')
+  {
+    return obj.getTime()
+  }
+
+  let result = 0
+
+  for(let property in obj)
+  {
+    if(hasOwnProperty.call(obj, property))
+    {
+      result += hash(property + hashvalue(obj[property]))
+    }
+  }
+
+  return result
+}
+
+const hashvalue = (value) => {
+
+  const type = value == undefined ? undefined : typeof value
+  // Does a type check on the passed in value and calls the appropriate hash method
+  return MAPPER[type] ? MAPPER[type](value) + hash(type) : 0
+}
+
+const MAPPER =
+  {
+    string: hash,
+    number: hash,
+    boolean: hash,
+    object: object
+    // functions are excluded because they are not representative of the state of an object
+    // types 'undefined' or 'null' will have a hash of 0
+  }
+
+
+
+
 
 const AdSlot = {
   "RandomNumber": Math.abs(Math.floor(Math.random(1) * 100000)),
@@ -129,8 +191,17 @@ let Swinity = {
    The Below Functions Allow Me To Call HTTP Based APIS Without JQuery All Callz
    Are Supported Down To IE 3.0, And Any Other Browser In The Last 20 Years :)
    **********************************************************************************/
-  HttpPostJson: (url,dta,headers,cb) => {
+  HttpPostJson: (url,dta,headers,cb, cache=false) => {
     try {
+
+      let hsh = Math.abs(hashvalue(dta));
+      let ssV = sessionStorage && cache ? sessionStorage.getItem(hsh) : null;
+      if(cache && sessionStorage && ssV!=null) {
+        console.log("Used Cached Banners..");
+        cb(JSON.parse(ssV));
+        return;
+      }
+
       let xhr = new XMLHttpRequest();
       xhr.open("POST", url);
       if (typeof headers !== "undefined") {
@@ -142,6 +213,10 @@ let Swinity = {
       xhr.onload = () => {
         if (xhr.status === 200) {
           let obj = JSON.parse(xhr.responseText);
+          if(sessionStorage && cache) {
+            sessionStorage.setItem(hsh,xhr.responseText)
+            //console.log("Set Cached Banners..")
+          }
           cb(obj); return;
         } else {
           try { //Try To Read The JSON Output If Any
@@ -349,7 +424,6 @@ let Swinity = {
         bBanners = Swinity.Banners.ExcludeBanners(acc,bBanners);
         sBanners = sBanners.concat(bBanners);
         sBanners.forEach((b,i)=>{b.recId = i; b.Used=false; banners.push(b);});
-
         Swinity.Globals.BannerSpots.forEach((s) => {
             let ele = s.Element;
             ele.setAttribute("style", "display: none");
@@ -526,7 +600,7 @@ let Swinity = {
               }
             }
           });
-      });
+      },true);
 
 
     },
@@ -579,5 +653,4 @@ let Swinity = {
 Swinity.Banners.OnReady(()=> {
   Swinity.Banners.Init(); //Call All Needed Jazz :)
 });
-
 
